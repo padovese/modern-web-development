@@ -20,4 +20,4 @@ for(let j = 0; j < 10; j++){
 }
 
 funcs2[1]();
-funcs2[2]();
+funcs2[2](); 
