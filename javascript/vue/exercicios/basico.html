@@ -7,9 +7,32 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+    <div id="app">
+        <p>1) {{ 2 + 2 }}</p>
+        <p>2) {{ "teste".toUpperCase()}}</p>
+        <p>3) {{ nome }}, {{ idade * 1 }} anos, do sexo {{ sexo }}</p>
+        <p>4) {{ horaCerta() }}</p>
+        <p>5) {{idadeNegativa }}</p>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data: {
+                nome: 'Padovese',
+                idade: 27,
+                sexo: 'M'
+            },
+            methods: {
+                horaCerta(){
+                    return new Date().toLocaleString();
+                }
+            },
+            computed: {
+                idadeNegativa(){
+                    return this.idade*-1;
+                }
+            }
+        })
     </script>
 </body>
 </html>
