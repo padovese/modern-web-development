@@ -7,9 +7,27 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+    <div id="app">
+        <p><a href="{{ link }}">aaa</a></p>
+        <p><a v-bind:href="link">bbb</a></p>
+        <p><a :href="link">equivalente</a></p>
+        <input type="text" v-model="nome">
+        <input type="text" v-bind:value="nome">
+        <span>{{nome}}</span>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data: {
+                link: "http://www.google.com.br",
+                nome: "Maria"
+            },
+            watch:{
+                nome(novoValor){
+                    console.log(novoValor.toUpperCase());
+                }
+            }
+        })
     </script>
 </body>
 </html>
