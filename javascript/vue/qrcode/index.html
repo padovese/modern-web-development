@@ -10,9 +10,36 @@
 </head>
 
 <body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <input type="text" size="25" placeholder="Digite aqui..." 
+        :value="text" @input="onData">
+
+        <div v-if="text" class="output">
+            <img :src="newQRcode">
+        </div>
+    </div>
 
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data: {
+                title: 'Gerador de QRCode',
+                text: 'http://github.com/padovese',
+                qrcode: new QRious({ size: 300})
+            },
+            computed:{
+                newQRcode(){
+                    this.qrcode.value = this.text;
+                    return this.qrcode.toDataURL();
+                }
+            },
+            methods:{
+                    onData(event){
+                        this.text = event.target.value;
+                    }
+            }
+        })
     </script>
 </body>
 
