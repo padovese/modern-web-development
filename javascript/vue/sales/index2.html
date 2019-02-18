@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vue.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Relatório de Vendas</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <h1 class="mt-3">{{ title }}</h1>
+            <h1 class="mt-3">{{ sales.content }}</h1>
+
+            <table class="mt-5 table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="sale in sales">
+                        <td>{{ sale.id }}</td>
+                        <td>{{ sale.content }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data:{
+                title: 'Relatório de Vendas',
+                sales: null
+            },
+            methods:{
+                getSales(){
+                    fetch('http://rest-service.guides.spring.io/greeting')
+                    .then(resp => resp.json())
+                    .then(data => this.sales = data)
+                    .then(data => console.log(data));
+                }
+            },
+            mounted(){
+                this.getSales();
+            }
+        })
+    </script>
+</body>
+
+</html>
